@@ -3,89 +3,112 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Typing speed test" />
-  <title>write Faster</title>
-
+  <meta name="description" content="Wright Fasten — Minimalist typing speed test. Measure WPM and accuracy." />
+  <title>write faster</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 
-<body>
+<body data-page="home">
 
-  <header class="header">
+  <header class="site-header" role="banner">
     <div class="container">
-      <a href="index.html" class="logo">write Faster</a>
+      <a href="index.html" class="logo" aria-label="Wright Fasten — Home">
+        <div class="logo__symbol" aria-hidden="true">
+     <img src="assets/logo.svg" alt="Wright Fasten logo" class="logo" />
+        </div>
+        <div class="logo__wordmark">
+          <span class="logo__name">write faster</span>
+          <span class="logo__tagline">Speed Test</span>
+        </div>
+      </a>
 
-      <nav>
-        <a href="index.html">Test</a>
-        <a href="login.html">Log in</a>
-        <a href="signup.html">Sign up</a>
+      <nav aria-label="Main navigation">
+        <ul class="nav__links" role="list">
+          <li><a href="index.html" class="nav__link" aria-current="page">Test</a></li>
+          <li><a href="login.html" class="nav__link">Log in</a></li>
+          <li><a href="signup.html" class="nav__link">Sign up</a></li>
+        </ul>
       </nav>
     </div>
   </header>
 
-  <main class="container">
+  <main class="site-main" id="main-content">
+    <div class="container">
+      <section class="test-section" aria-labelledby="test-heading">
+        <h1 id="test-heading" class="visually-hidden">Typing Speed Test</h1>
 
-    <section class="test">
-
-      <div class="controls">
-        <button class="mode-selector__btn is-active" data-duration="15">15s</button>
-        <button class="mode-selector__btn" data-duration="30">30s</button>
-        <button class="mode-selector__btn" data-duration="60">60s</button>
-      </div>
-
-      <div class="stats">
-        <div>
-          <span id="timer-display">00:15</span>
-          <small>time</small>
+        <div class="controls-bar" role="group" aria-label="Test duration">
+          <div class="mode-selector" role="radiogroup" aria-label="Duration">
+            <button class="mode-selector__btn is-active" data-duration="15" role="radio" aria-checked="true"  aria-label="15 seconds">15s</button>
+            <button class="mode-selector__btn"data-duration="30" role="radio" aria-checked="false" aria-label="30 seconds">30s</button>
+            <button class="mode-selector__btn"           data-duration="60" role="radio" aria-checked="false" aria-label="60 seconds">60s</button>
+          </div>
         </div>
 
-        <div>
-          <span id="wpm-display">—</span>
-          <small>wpm</small>
+        <div class="stats-bar" role="status" aria-live="polite" aria-label="Live stats">
+          <div class="stat-item stat-item--highlight">
+            <output id="timer-display" class="timer-display" aria-label="Time remaining">00:15</output>
+            <span class="stat-item__label">time</span>
+          </div>
+          <div class="stat-item">
+            <output id="wpm-display" class="stat-item__value" aria-label="Words per minute">—</output>
+            <span class="stat-item__label">wpm</span>
+          </div>
+          <div class="stat-item">
+            <output id="accuracy-display" class="stat-item__value" aria-label="Accuracy">—</output>
+            <span class="stat-item__label">accuracy</span>
+          </div>
         </div>
 
-        <div>
-          <span id="accuracy-display">—</span>
-          <small>accuracy</small>
+        <div class="typing-display" role="region" aria-label="Text to type">
+          <p id="typing-display-text" class="typing-display__text" aria-hidden="true"></p>
+
+          <div id="result-overlay" class="result-overlay" role="dialog" aria-modal="true" aria-label="Test results" aria-hidden="true">
+            <p class="result-overlay__title">Test complete</p>
+            <p class="result-overlay__wpm">— <span>wpm</span></p>
+            <button class="btn btn--ghost btn--sm" onclick="document.getElementById('restart-btn').click()">Try again</button>
+          </div>
         </div>
-      </div>
 
-      <div class="text-box">
-        <p id="typing-display-text"></p>
-
-        <div id="result-overlay" class="result-overlay" hidden>
-          <p>Test complete</p>
-          <p class="result-overlay__wpm">— wpm</p>
-          <button onclick="document.getElementById('restart-btn').click()">
-            Try again
-          </button>
+        <div class="typing-input-wrapper">
+          <label for="typing-input" class="visually-hidden">Type the text shown above</label>
+          <input
+            type="text"
+            id="typing-input"
+            class="typing-input"
+            placeholder="Start typing to begin…"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false"
+            aria-describedby="typing-hint"
+          />
         </div>
-      </div>
 
-      <input
-        id="typing-input"
-        type="text"
-        placeholder="Start typing..."
-        autocomplete="off"
-      />
+        <div class="controls-bar">
+          <button id="restart-btn" class="btn btn--ghost btn--sm" aria-label="Restart test">Restart</button>
+        </div>
 
-      <div class="actions">
-        <button id="restart-btn">Restart</button>
-      </div>
-
-    </section>
-
+        <p class="hint-text" id="typing-hint" style="margin-top: 1rem;">
+          <kbd class="kbd">Tab</kbd> or <kbd class="kbd">Esc</kbd> to restart
+        </p>
+      </section>
+    </div>
   </main>
 
-  <footer class="footer">
-    <p>© 2026 Saba Sajaia</p>
-    <p>
-      <a href="login.html">Log in</a> ·
-      <a href="signup.html">Sign up</a>
-    </p>
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p class="footer-text">© 2025 Wright Fasten</p>
+      <p class="footer-text">
+        <a href="login.html"  class="footer-link">Log in</a>
+        &nbsp;·&nbsp;
+        <a href="signup.html" class="footer-link">Sign up</a>
+      </p>
+    </div>
   </footer>
 
-  <div id="toast-container"></div>
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
 
   <script type="module" src="js/app.js"></script>
 </body>
