@@ -20,7 +20,13 @@ export function renderSentence(sentence, container) {
     const span = document.createElement('span');
     span.classList.add('char');
     span.dataset.index = index;
-    span.textContent = char;
+    if (char === ' ') {
+      span.dataset.space = 'true';
+      span.textContent = '·';
+      span.classList.add('char--space');
+    } else {
+      span.textContent = char;
+    }
     container.appendChild(span);
   });
 }

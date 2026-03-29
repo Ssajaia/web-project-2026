@@ -1,7 +1,3 @@
-// All backend communication goes through here.
-// When the PHP backend is ready, set BASE_URL to your server (e.g. '/api').
-// Every function returns { ok, data, error } so callers never deal with raw fetch.
-
 const BASE_URL = '/api';
 
 async function request(method, path, body = null) {
