@@ -34,7 +34,6 @@ async function initHome() {
   });
 }
 
-// Show/hide nav items depending on whether the user has an active session.
 async function syncNav() {
   const { ok, data } = await auth.session();
   const loggedIn = ok && data?.loggedIn;
