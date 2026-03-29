@@ -3,16 +3,30 @@ import { initLoginForm, initSignupForm } from './auth.js';
 import { initLeaderboard } from './leaderboard.js';
 import { auth } from './api.js';
 
+//TODO: remove it after backend will be ready
+const SECONDS=2 // enforce time
 const page = document.body.dataset.page;
 
 document.addEventListener('DOMContentLoaded', async () => {
+  const minWait = new Promise(res => setTimeout(res, SECONDS*1000));
+
   await syncNav();
 
-  if (page === 'home')        initHome();
+  if (page === 'home')        await initHome();
   if (page === 'login')       initLoginForm();
   if (page === 'signup')      initSignupForm();
   if (page === 'leaderboard') initLeaderboard();
+
+  await minWait;
+  hideLoader();
 });
+
+function hideLoader() {
+  const loader = document.getElementById('loader');
+  if (!loader) return;
+  loader.classList.add('loader--done');
+  loader.addEventListener('transitionend', () => loader.remove(), { once: true });
+}
 
 async function initHome() {
   await loadSentences();
