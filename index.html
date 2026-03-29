@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Wright Fasten — Minimalist typing speed test. Measure WPM and accuracy." />
-  <title>write faster</title>
+  <meta name="description" content="Write Faster — Minimalist typing speed test. Measure WPM and accuracy." />
+  <title>Write Faster — Typing Speed Test</title>
+  <link rel="icon" href="assets/favicon.ico" sizes="any" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 
@@ -13,21 +15,28 @@
 
   <header class="site-header" role="banner">
     <div class="container">
-      <a href="index.html" class="logo" aria-label="Wright Fasten — Home">
+      <a href="index.html" class="logo" aria-label="Write Faster — Home">
         <div class="logo__symbol" aria-hidden="true">
-     <img src="assets/logo.svg" alt="Wright Fasten logo" class="logo" />
+          <img src="./assets/favicon-192.png" alt="icon">
         </div>
         <div class="logo__wordmark">
-          <span class="logo__name">write faster</span>
+          <span class="logo__name">Write Faster</span>
           <span class="logo__tagline">Speed Test</span>
         </div>
       </a>
 
       <nav aria-label="Main navigation">
         <ul class="nav__links" role="list">
-          <li><a href="index.html" class="nav__link" aria-current="page">Test</a></li>
-          <li><a href="login.html" class="nav__link">Log in</a></li>
-          <li><a href="signup.html" class="nav__link">Sign up</a></li>
+          <li><a href="index.html"       class="nav__link" aria-current="page">Test</a></li>
+          <li><a href="leaderboard.html" class="nav__link">Leaderboard</a></li>
+          <li data-auth="guest"><a href="login.html"  class="nav__link">Log in</a></li>
+          <li data-auth="guest"><a href="signup.html" class="nav__link">Sign up</a></li>
+          <li data-auth="user" hidden>
+            <span id="nav-username" class="nav__link nav__username"></span>
+          </li>
+          <li data-auth="user" hidden>
+            <a href="api/auth/logout.php" class="nav__link">Log out</a>
+          </li>
         </ul>
       </nav>
     </div>
@@ -41,7 +50,7 @@
         <div class="controls-bar" role="group" aria-label="Test duration">
           <div class="mode-selector" role="radiogroup" aria-label="Duration">
             <button class="mode-selector__btn is-active" data-duration="15" role="radio" aria-checked="true"  aria-label="15 seconds">15s</button>
-            <button class="mode-selector__btn"data-duration="30" role="radio" aria-checked="false" aria-label="30 seconds">30s</button>
+            <button class="mode-selector__btn"           data-duration="30" role="radio" aria-checked="false" aria-label="30 seconds">30s</button>
             <button class="mode-selector__btn"           data-duration="60" role="radio" aria-checked="false" aria-label="60 seconds">60s</button>
           </div>
         </div>
@@ -67,7 +76,10 @@
           <div id="result-overlay" class="result-overlay" role="dialog" aria-modal="true" aria-label="Test results" aria-hidden="true">
             <p class="result-overlay__title">Test complete</p>
             <p class="result-overlay__wpm">— <span>wpm</span></p>
-            <button class="btn btn--ghost btn--sm" onclick="document.getElementById('restart-btn').click()">Try again</button>
+            <div class="result-overlay__actions">
+              <button class="btn btn--ghost btn--sm" onclick="document.getElementById('restart-btn').click()">Try again</button>
+              <a href="leaderboard.html" class="btn btn--ghost btn--sm">Leaderboard</a>
+            </div>
           </div>
         </div>
 
@@ -99,11 +111,12 @@
 
   <footer class="site-footer" role="contentinfo">
     <div class="container">
-      <p class="footer-text">© 2025 Wright Fasten</p>
+      <p class="footer-text">© 2025 Write Faster</p>
       <p class="footer-text">
-        <a href="login.html"  class="footer-link">Log in</a>
+        <a href="leaderboard.html" class="footer-link">Leaderboard</a>
         &nbsp;·&nbsp;
-        <a href="signup.html" class="footer-link">Sign up</a>
+        <a href="login.html"  class="footer-link" data-auth="guest">Log in</a>
+        <a href="signup.html" class="footer-link" data-auth="guest"> · Sign up</a>
       </p>
     </div>
   </footer>

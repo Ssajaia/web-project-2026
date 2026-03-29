@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Write Faster — See the top typing speeds from players around the world." />
+  <title>Leaderboard — Write Faster</title>
+  <link rel="icon" href="assets/favicon.ico" sizes="any" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body data-page="leaderboard">
+
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="index.html" class="logo" aria-label="Write Faster — Home">
+        <div class="logo__symbol" aria-hidden="true">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="20" width="30" height="13" rx="2.5" stroke="#f0f0f0" stroke-width="1.4" fill="none"/>
+            <line x1="10" y1="16" x2="26" y2="16" stroke="#f0f0f0" stroke-width="1.4" stroke-linecap="round"/>
+            <line x1="14" y1="11.5" x2="26" y2="11.5" stroke="#f0f0f0" stroke-width="1.4" stroke-linecap="round" opacity="0.55"/>
+            <line x1="18" y1="7" x2="26" y2="7" stroke="#f0f0f0" stroke-width="1.4" stroke-linecap="round" opacity="0.25"/>
+            <rect x="7"  y="23.5" width="3.5" height="2.5" rx="0.6" fill="#f0f0f0" opacity="0.5"/>
+            <rect x="12" y="23.5" width="3.5" height="2.5" rx="0.6" fill="#f0f0f0" opacity="0.5"/>
+            <rect x="17" y="23.5" width="3.5" height="2.5" rx="0.6" fill="#f0f0f0" opacity="0.5"/>
+            <rect x="22" y="23.5" width="3.5" height="2.5" rx="0.6" fill="#f0f0f0" opacity="0.5"/>
+            <rect x="10" y="28" width="16" height="2.5" rx="0.6" fill="#f0f0f0" opacity="0.3"/>
+          </svg>
+        </div>
+        <div class="logo__wordmark">
+          <span class="logo__name">Write Faster</span>
+          <span class="logo__tagline">Speed Test</span>
+        </div>
+      </a>
+
+      <nav aria-label="Main navigation">
+        <ul class="nav__links" role="list">
+          <li><a href="index.html"       class="nav__link">Test</a></li>
+          <li><a href="leaderboard.html" class="nav__link" aria-current="page">Leaderboard</a></li>
+          <li data-auth="guest"><a href="login.html"  class="nav__link">Log in</a></li>
+          <li data-auth="guest"><a href="signup.html" class="nav__link">Sign up</a></li>
+          <li data-auth="user" hidden>
+            <span id="nav-username" class="nav__link nav__username"></span>
+          </li>
+          <li data-auth="user" hidden>
+            <a href="api/auth/logout.php" class="nav__link">Log out</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="site-main" id="main-content">
+    <div class="container">
+      <section class="test-section" aria-labelledby="lb-heading">
+        <h1 id="lb-heading" class="page-title" style="text-align:center; margin-bottom: 0.5rem;">Leaderboard</h1>
+        <p class="page-subtitle" style="text-align:center; margin-bottom: 2rem;">Top scores across all players</p>
+
+        <div class="controls-bar" style="margin-bottom: 2rem;" role="group" aria-label="Filter by duration">
+          <div class="mode-selector" role="radiogroup" aria-label="Duration filter">
+            <button class="mode-selector__btn"           data-duration="15" role="radio" aria-checked="false" aria-label="15 seconds">15s</button>
+            <button class="mode-selector__btn"           data-duration="30" role="radio" aria-checked="false" aria-label="30 seconds">30s</button>
+            <button class="mode-selector__btn is-active" data-duration="60" role="radio" aria-checked="true"  aria-label="60 seconds">60s</button>
+          </div>
+        </div>
+
+        <div class="lb-table-wrapper">
+          <p id="leaderboard-loading" class="lb-state-msg">Loading…</p>
+          <p id="leaderboard-empty" class="lb-state-msg hidden">No scores yet. Be the first!</p>
+
+          <table class="lb-table" aria-label="Leaderboard">
+            <thead>
+              <tr>
+                <th class="lb-rank">#</th>
+                <th class="lb-user">Player</th>
+                <th class="lb-wpm">WPM</th>
+                <th class="lb-accuracy">Accuracy</th>
+                <th class="lb-date">Date</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboard-body"></tbody>
+          </table>
+        </div>
+
+        <div class="controls-bar" style="margin-top: 2.5rem;">
+          <a href="index.html" class="btn btn--ghost btn--sm">← Take the test</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p class="footer-text">© 2025 Write Faster</p>
+      <p class="footer-text">
+        <a href="index.html" class="footer-link">Test</a>
+        &nbsp;·&nbsp;
+        <a href="login.html"  class="footer-link">Log in</a>
+        &nbsp;·&nbsp;
+        <a href="signup.html" class="footer-link">Sign up</a>
+      </p>
+    </div>
+  </footer>
+
+  <div id="toast-container" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
